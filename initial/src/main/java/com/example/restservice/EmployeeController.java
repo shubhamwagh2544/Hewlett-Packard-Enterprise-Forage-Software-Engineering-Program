@@ -18,7 +18,8 @@ public class EmployeeController {
     }
 
     @GetMapping(
-            path = "employees"
+            path = "employees",
+            produces = MediaType.APPLICATION_JSON_VALUE
     )
     public List<Employee> getAllEmployees() {
         return employeeManager.getEmployeeData();
