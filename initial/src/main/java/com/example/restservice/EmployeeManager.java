@@ -3,12 +3,15 @@ package com.example.restservice;
 
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
 public class EmployeeManager {
 
-    public List<Employee> employeeData() {
+    private static final List<Employee> list = new ArrayList<>();
+
+    static  {
         final String role = "Software Engineer";
         Employee robert = new Employee(
                 1L,
@@ -34,13 +37,20 @@ public class EmployeeManager {
 
         Employees employees = new Employees();
 
-        employees.setEmployeeList(List.of(
-                robert,
-                emily,
-                cillian
-        ));
+        list.add(robert);
+        list.add(emily);
+        list.add(cillian);
 
-        return employees.getEmployeeList();
+        employees.setEmployeeList(list);
+    }
+
+    public List<Employee> getEmployeeData() {
+        return list;
+    }
+
+    public String addEmployee(Employee employee) {
+        list.add(employee);
+        return "success";
     }
 
 }
